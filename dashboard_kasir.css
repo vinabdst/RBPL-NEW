@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #312051;        /* dark purple */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.sidebar .role {
+  color: #F0C38E;             /* peach */
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.sidebar li:hover {
+  background: #48426D;        /* medium purple */
+}
+
+.sidebar li.active {
+  background: #48426D;        /* medium purple */
+}
+
+.logout {
+  margin-top: auto;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: white;
+}
+
+.logout:hover {
+  background: #48426D;        /* medium purple */
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* WELCOME CARD */
+.welcome-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.welcome-card h2 {
+  margin: 0 0 5px 0;
+  color: #312051;             /* dark purple */
+}
+
+.welcome-card p {
+  margin: 0;
+  color: #666;
+}
+
+/* STATS CARDS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.stat-card .big {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #F0C38E;             /* peach */
+}
+
+.stat-card span {
+  color: #777;
+  font-size: 14px;
+}
+
+/* TABLE CARD */
+.table-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.table-card h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #312051;             /* dark purple */
+  font-size: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid #F1AA9B;  /* salmon */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  color: #48426D;             /* medium purple */
+  font-weight: 600;
+}
+
+td {
+  color: #666;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}

@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5e5e5;
+  font-family: Arial, sans-serif;
+}
+
+/* Card utama */
+.card {
+  width: 900px;
+  height: 520px;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* LEFT */
+.left {
+  width: 45%;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.left h2 {
+  font-size: 28px;
+}
+
+.left p {
+  opacity: 0.8;
+}
+
+/* RIGHT */
+.right {
+  width: 55%;
+  background: #312051;        /* dark purple */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 75%;
+  text-align: center;
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #F0C38E;             /* peach */
+}
+
+.subtitle {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: none;
+  background: #48426D;        /* medium purple */
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #F0C38E;        /* peach */
+  color: #312051;             /* dark purple text */
+}
+
+.footer {
+  font-size: 11px;
+  margin-top: 20px;
+}
