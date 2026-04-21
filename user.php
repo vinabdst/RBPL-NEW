@@ -45,8 +45,8 @@ $result = mysqli_query($conn, $query);
             <li><a href="dashboard_admin.php">Dashboard</a></li>
             <li><a href="barang.php">Data Barang</a></li>
             <li><a href="pembelian.php">Transaksi Pembelian</a></li>
-            <li><a href="#">Transaksi Penjualan</a></li>
-            <li><a href="#">Laporan</a></li>
+            <li><a href="penjualan.php">Transaksi Penjualan</a></li>
+            <li><a href="laporan.php">Laporan</a></li>
             <li class="active"><a href="user.php">Kelola User</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
