@@ -4,28 +4,30 @@ body {
   background: #f4f6f9;
 }
 
-.container {
+.dashboard {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* SIDEBAR */
 .sidebar {
   width: 220px;
-  background: #312051;        /* dark purple */
+  background: #312051;
   color: white;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
 }
 
 .sidebar h2 {
   margin-bottom: 5px;
-  color: white;
 }
 
 .sidebar .role {
-  color: #F0C38E;             /* peach */
+  color: #F0C38E;
   margin-bottom: 30px;
   font-size: 14px;
 }
@@ -36,40 +38,63 @@ body {
 }
 
 .sidebar li {
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 6px;
   margin-bottom: 5px;
+  padding: 0;
+}
+
+.sidebar li a {
+  display: block;
+  padding: 12px;
   color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
 
-.sidebar li:hover {
-  background: #48426D;        /* medium purple */
-}
-
-.sidebar li.active {
-  background: #48426D;        /* medium purple */
+.sidebar li a:hover,
+.sidebar li.active a {
+  background: #48426D;
 }
 
 .logout {
   margin-top: auto;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 6px;
-  color: white;
+  padding: 0;
 }
 
-.logout:hover {
-  background: #48426D;        /* medium purple */
+.logout a {
+  display: block;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.logout a:hover {
+  background: #48426D;
 }
 
 /* MAIN */
 .main {
   flex: 1;
   padding: 30px;
+  overflow-y: auto;
+  height: 100vh;
 }
 
-/* WELCOME CARD */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.user {
+  background: #48426D;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
 .welcome-card {
   background: white;
   padding: 20px;
@@ -79,8 +104,8 @@ body {
 }
 
 .welcome-card h2 {
-  margin: 0 0 5px 0;
-  color: #312051;             /* dark purple */
+  margin: 0 0 5px;
+  color: #312051;
 }
 
 .welcome-card p {
@@ -88,7 +113,6 @@ body {
   color: #666;
 }
 
-/* STATS CARDS */
 .stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -113,7 +137,7 @@ body {
   font-size: 28px;
   font-weight: bold;
   margin: 10px 0;
-  color: #F0C38E;             /* peach */
+  color: #F0C38E;
 }
 
 .stat-card span {
@@ -121,7 +145,6 @@ body {
   font-size: 14px;
 }
 
-/* TABLE CARD */
 .table-card {
   background: white;
   padding: 20px;
@@ -132,7 +155,7 @@ body {
 .table-card h2 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #312051;             /* dark purple */
+  color: #312051;
   font-size: 18px;
 }
 
@@ -142,7 +165,7 @@ table {
 }
 
 thead {
-  border-bottom: 2px solid #F1AA9B;  /* salmon */
+  border-bottom: 2px solid #F1AA9B;
 }
 
 th, td {
@@ -151,7 +174,7 @@ th, td {
 }
 
 th {
-  color: #48426D;             /* medium purple */
+  color: #48426D;
   font-weight: 600;
 }
 
@@ -166,3 +189,26 @@ tbody tr {
 tbody tr:last-child {
   border-bottom: none;
 }
+
+/* Notifikasi */
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #312051;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+.notification.show {
+  opacity: 1;
+  visibility: visible;
+}
+.notification.success { background: #28a745; }
+.notification.error { background: #dc3545; }
