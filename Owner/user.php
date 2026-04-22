@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 

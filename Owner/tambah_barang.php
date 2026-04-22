@@ -1,18 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
-    header("Location: index.php");
-    exit;
-}
-
-$id = (int)$_GET['id'];
-$query = "SELECT * FROM barang WHERE idBarang = $id";
-$result = mysqli_query($conn, $query);
-$data = mysqli_fetch_assoc($result);
-if (!$data) {
-    header("Location: barang.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -24,26 +15,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $harga_jual = (float)$_POST['harga_jual'];
     $stok = (int)$_POST['stok'];
 
-    $update = "UPDATE barang SET 
-                nama_barang='$nama', 
-                jenis_logam='$jenis', 
-                berat_gram='$berat', 
-                harga_beli='$harga_beli', 
-                harga_jual='$harga_jual', 
-                stok='$stok' 
-                WHERE idBarang=$id";
-    if (mysqli_query($conn, $update)) {
-        header("Location: barang.php?status=updated");
+    $insert = "INSERT INTO barang (nama_barang, jenis_logam, berat_gram, harga_beli, harga_jual, stok)
+               VALUES ('$nama', '$jenis', '$berat', '$harga_beli', '$harga_jual', '$stok')";
+    if (mysqli_query($conn, $insert)) {
+        header("Location: barang.php?status=added");
         exit;
     } else {
-        $error = "Gagal mengupdate: " . mysqli_error($conn);
+        $error = "Gagal menambah: " . mysqli_error($conn);
     }
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Barang</title>
+    <title>Tambah Barang</title>
     <link rel="stylesheet" href="dashboard_admin.css">
     <style>
         .form-container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 10px; }
@@ -56,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <div class="dashboard">
-    <!-- Sidebar -->
+    <!-- Sidebar (salin dari barang.php) -->
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
         <ul>
@@ -72,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="main">
         <div class="topbar">
-            <h1>Edit Barang</h1>
+            <h1>Tambah Barang</h1>
             <div class="user"><?= $_SESSION['username'] ?></div>
         </div>
 
@@ -81,29 +66,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="POST">
                 <div class="form-group">
                     <label>Nama Barang</label>
-                    <input type="text" name="nama_barang" value="<?= htmlspecialchars($data['nama_barang']) ?>" required>
+                    <input type="text" name="nama_barang" placeholder="Contoh: Timbal Batangan" required>
                 </div>
                 <div class="form-group">
                     <label>Jenis Logam</label>
-                    <input type="text" name="jenis_logam" value="<?= htmlspecialchars($data['jenis_logam']) ?>" required>
+                    <input type="text" name="jenis_logam" placeholder="Contoh: Timbal, Tembaga, Kuningan" required>
                 </div>
                 <div class="form-group">
                     <label>Berat (gram)</label>
-                    <input type="number" step="0.01" name="berat_gram" value="<?= $data['berat_gram'] ?>" required>
+                    <input type="number" step="0.01" name="berat_gram" required>
                 </div>
                 <div class="form-group">
                     <label>Harga Beli (Rp)</label>
-                    <input type="number" step="1000" name="harga_beli" value="<?= $data['harga_beli'] ?>" required>
+                    <input type="number" step="1000" name="harga_beli" required>
                 </div>
                 <div class="form-group">
                     <label>Harga Jual (Rp)</label>
-                    <input type="number" step="1000" name="harga_jual" value="<?= $data['harga_jual'] ?>" required>
+                    <input type="number" step="1000" name="harga_jual" required>
                 </div>
                 <div class="form-group">
-                    <label>Stok</label>
-                    <input type="number" name="stok" value="<?= $data['stok'] ?>" required>
+                    <label>Stok Awal</label>
+                    <input type="number" name="stok" value="0" required>
                 </div>
-                <button type="submit" class="btn-submit">Update</button>
+                <button type="submit" class="btn-submit">Simpan</button>
                 <a href="barang.php" style="margin-left: 10px;">Batal</a>
             </form>
         </div>

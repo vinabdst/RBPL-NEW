@@ -40,9 +40,9 @@
                 
                 // redirect sesuai role
                 if($row["role"] == "Owner") {
-                    header("Location: dashboard_admin.php");
+                    header("Location: Owner/dashboard_admin.php");
                 } else {
-                    header("Location: dashboard_kasir.php");
+                    header("Location: Kasir/dashboard_kasir.php");
                 }
                 exit;
             } else {

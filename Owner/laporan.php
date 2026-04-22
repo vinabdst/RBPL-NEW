@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -104,7 +104,6 @@ $laba_kotor = $total_penjualan - $total_pembelian;
             <li><a href="dashboard_admin.php">Dashboard</a></li>
             <li><a href="barang.php">Data Barang</a></li>
             <li><a href="pembelian.php">Transaksi Pembelian</a></li>
-            <li><a href="riwayat_penjualan.php">Transaksi Penjualan</a></li>
             <li class="active"><a href="laporan.php">Laporan</a></li>
             <li><a href="user.php">Kelola User</a></li>
             <li><a href="logout.php">Logout</a></li>

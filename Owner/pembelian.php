@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -36,7 +36,6 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
             <li><a href="dashboard_admin.php">Dashboard</a></li>
             <li><a href="barang.php">Data Barang</a></li>
             <li class="active"><a href="pembelian.php">Transaksi Pembelian</a></li>
-            <li><a href="penjualan.php">Transaksi Penjualan</a></li>
             <li><a href="laporan.php">Laporan</a></li>
             <li><a href="user.php">Kelola User</a></li>
             <li><a href="logout.php">Logout</a></li>

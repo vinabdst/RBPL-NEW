@@ -1,53 +1,50 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
-if (!isset($_SESSION['login'])) {
-    header("Location: index.php");
+if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
+    header("Location: ../index.php");
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tanggal = mysqli_real_escape_string($conn, $_POST['tanggal']);
+    $supplier = mysqli_real_escape_string($conn, $_POST['supplier']);
     $total_harga = (float)$_POST['total_harga'];
-    $kasir = $_SESSION['username'];
     $id_barang = $_POST['id_barang'];
     $jumlah = $_POST['jumlah'];
     $harga_satuan = $_POST['harga_satuan'];
 
+    // Mulai transaksi database
     mysqli_begin_transaction($conn);
     try {
-        // Insert header
-        $insertHeader = "INSERT INTO transaksi_jual (tanggal, total_harga, kasir) VALUES ('$tanggal', $total_harga, '$kasir')";
+        // Insert header transaksi beli
+        $insertHeader = "INSERT INTO transaksi_beli (tanggal, supplier, total_harga) VALUES ('$tanggal', '$supplier', $total_harga)";
         mysqli_query($conn, $insertHeader);
         $idTransaksi = mysqli_insert_id($conn);
 
+        // Insert detail dan update stok
         for ($i = 0; $i < count($id_barang); $i++) {
             $idBarang = (int)$id_barang[$i];
             $jml = (int)$jumlah[$i];
             $harga = (float)$harga_satuan[$i];
             $subtotal = $jml * $harga;
 
-            // Cek stok cukup
-            $cekStok = mysqli_fetch_assoc(mysqli_query($conn, "SELECT stok FROM barang WHERE idBarang = $idBarang"));
-            if ($cekStok['stok'] < $jml) {
-                throw new Exception("Stok tidak cukup untuk barang ID $idBarang");
-            }
-
-            $insertDetail = "INSERT INTO detail_jual (idTransaksiJual, idBarang, jumlah, harga_satuan, subtotal) 
+            $insertDetail = "INSERT INTO detail_beli (idTransaksiBeli, idBarang, jumlah, harga_satuan, subtotal) 
                              VALUES ($idTransaksi, $idBarang, $jml, $harga, $subtotal)";
             mysqli_query($conn, $insertDetail);
 
-            // Kurangi stok
-            mysqli_query($conn, "UPDATE barang SET stok = stok - $jml WHERE idBarang = $idBarang");
+            // Update stok barang (tambah stok)
+            $updateStok = "UPDATE barang SET stok = stok + $jml WHERE idBarang = $idBarang";
+            mysqli_query($conn, $updateStok);
         }
 
         mysqli_commit($conn);
-        header("Location: cetak_nota.php?id=$idTransaksi");
+        header("Location: riwayat_pembelian.php?status=added");
         exit;
     } catch (Exception $e) {
         mysqli_rollback($conn);
-        header("Location: penjualan.php?error=1");
+        header("Location: pembelian.php?status=error");
         exit;
     }
 }
