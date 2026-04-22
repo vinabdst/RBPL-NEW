@@ -106,7 +106,7 @@ $laba_kotor = $total_penjualan - $total_pembelian;
             <li><a href="pembelian.php">Transaksi Pembelian</a></li>
             <li class="active"><a href="laporan.php">Laporan</a></li>
             <li><a href="user.php">Kelola User</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="../logout.php">Logout</a></li>
         </ul>
     </div>
     <div class="main">

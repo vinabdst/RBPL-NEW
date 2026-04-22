@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $query);
             <li><a href="pembelian.php" style="color: white; text-decoration: none;">Transaksi Pembelian</a></li>
             <li><a href="laporan.php" style="color: white; text-decoration: none;">Laporan</a></li>
             <li><a href="user.php" style="color: white; text-decoration: none;">Kelola User</a></li>
-            <li><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></li>
+            <li><a href="../logout.php" style="color: white; text-decoration: none;">Logout</a></li>
         </ul>
     </div>
 
