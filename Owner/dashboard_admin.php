@@ -14,8 +14,29 @@ if($_SESSION['role'] != 'Owner') {
     exit;
 }
 
-$current_page = basename($_SERVER['PHP_SELF']);
+// Query data (dengan penanganan error jika query gagal)
+$totalBarang = 0;
+$totalTransaksiBulan = 0;
+$stokMenipis = 0;
+$totalUser = 0;
+
+$queryBarang = "SELECT COUNT(*) as total FROM barang";
+$resBarang = mysqli_query($conn, $queryBarang);
+if($resBarang && $row = mysqli_fetch_assoc($resBarang)) $totalBarang = $row['total'];
+
+$queryStok = "SELECT COUNT(*) as menipis FROM barang WHERE stok <= 10";
+$resStok = mysqli_query($conn, $queryStok);
+if($resStok && $row = mysqli_fetch_assoc($resStok)) $stokMenipis = $row['menipis'];
+
+$queryUser = "SELECT COUNT(*) as total FROM users";
+$resUser = mysqli_query($conn, $queryUser);
+if($resUser && $row = mysqli_fetch_assoc($resUser)) $totalUser = $row['total'];
+
+// Total transaksi bulan ini (contoh placeholder)
+$totalTransaksiBulan = 0;
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,76 +46,48 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="dashboard_admin.css">
 </head>
 <body>
-<div class="dashboard">
-    <!-- SIDEBAR (konsisten dengan halaman barang) -->
+<div class="container">
+    <!-- SIDEBAR -->
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
+        <p class="role">Owner</p>
         <ul>
             <li class="active"><a href="dashboard_admin.php">Dashboard</a></li>
             <li><a href="barang.php">Data Barang</a></li>
             <li><a href="pembelian.php">Transaksi Pembelian</a></li>
             <li><a href="laporan.php">Laporan</a></li>
             <li><a href="user.php">Kelola User</a></li>
-            <li><a href="../logout.php">Logout</a></li>
         </ul>
+        <div class="logout">
+            <a href="../logout.php">Logout</a>
+        </div>
     </div>
 
-    <!-- MAIN CONTENT (konsisten dengan halaman tambah_barang) -->
+    <!-- MAIN CONTENT -->
     <div class="main">
-        <div class="topbar">
-            <h1>Dashboard Admin</h1>
-            <div class="user"><?= $_SESSION['username'] ?></div>
+        <h1>Dashboard Admin</h1>
+
+        <div class="welcome-card">
+            <h2>Selamat Datang, <?= htmlspecialchars($_SESSION['nama']) ?>!</h2>
+            <p><?= date('l, d F Y') ?></p>
         </div>
 
-        <!-- Welcome card (opsional, mirip dengan form-card tapi untuk sambutan) -->
-        <div class="form-card" style="margin-bottom: 30px;">
-            <h2 style="color: #312051; margin-top: 0;">Selamat Datang, <?= $_SESSION['nama'] ?>!</h2>
-            <p style="color: #555;">Anda login sebagai <strong>Owner</strong>. Kelola data barang, transaksi, dan laporan di sini.</p>
-        </div>
-
-        <!-- Cards statistik -->
-        <div class="cards">
-            <div class="card">
+        <div class="stats">
+            <div class="stat-card">
                 <h3>Total Barang</h3>
-                <p>
-                    <?php
-                    $query = "SELECT COUNT(*) as total FROM barang";
-                    $res = mysqli_query($conn, $query);
-                    $row = mysqli_fetch_assoc($res);
-                    echo $row['total'];
-                    ?>
-                </p>
+                <p class="big"><?= $totalBarang ?></p>
             </div>
-            <div class="card">
+            <div class="stat-card">
                 <h3>Total Transaksi (Bulan Ini)</h3>
-                <p>
-                    <?php
-                    // Contoh: hitung dari tabel penjualan (sementara 0 karena belum ada)
-                    echo "0";
-                    ?>
-                </p>
+                <p class="big"><?= $totalTransaksiBulan ?></p>
             </div>
-            <div class="card">
+            <div class="stat-card">
                 <h3>Stok Menipis (≤ 10)</h3>
-                <p>
-                    <?php
-                    $query = "SELECT COUNT(*) as menipis FROM barang WHERE stok <= 10";
-                    $res = mysqli_query($conn, $query);
-                    $row = mysqli_fetch_assoc($res);
-                    echo $row['menipis'];
-                    ?>
-                </p>
+                <p class="big"><?= $stokMenipis ?></p>
             </div>
-            <div class="card">
+            <div class="stat-card">
                 <h3>Total User</h3>
-                <p>
-                    <?php
-                    $query = "SELECT COUNT(*) as total FROM users";
-                    $res = mysqli_query($conn, $query);
-                    $row = mysqli_fetch_assoc($res);
-                    echo $row['total'];
-                    ?>
-                </p>
+                <p class="big"><?= $totalUser ?></p>
             </div>
         </div>
     </div>

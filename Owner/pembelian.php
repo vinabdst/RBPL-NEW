@@ -32,20 +32,23 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
 <div class="dashboard">
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
+        <p class="role">Owner</p>
         <ul>
             <li><a href="dashboard_admin.php">Dashboard</a></li>
             <li><a href="barang.php">Data Barang</a></li>
             <li class="active"><a href="pembelian.php">Transaksi Pembelian</a></li>
             <li><a href="laporan.php">Laporan</a></li>
             <li><a href="user.php">Kelola User</a></li>
-            <li><a href="../logout.php">Logout</a></li>
         </ul>
+        <div class="logout">
+            <a href="../logout.php">Logout</a>
+        </div>
     </div>
+
 
     <div class="main">
         <div class="topbar">
             <h1>Transaksi Pembelian dari Supplier</h1>
-            <div class="user"><?= $_SESSION['username'] ?></div>
         </div>
 
         <div class="form-card">

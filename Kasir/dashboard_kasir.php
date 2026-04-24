@@ -47,9 +47,9 @@ $transaksi_terakhir = mysqli_query($conn, $query_transaksi);
         <h2>Toko Bahan Logam</h2>
         <p class="role">Kasir</p>
         <ul>
-            <li class="active"><a href="dashboard_kasir.php" style="color:white; text-decoration:none;">Dashboard</a></li>
+            <li class="active"><a href="dashboard_kasir.php">Dashboard</a></li>
             <li><a href="penjualan.php" style="color:white; text-decoration:none;">Transaksi Penjualan</a></li>
-            <li><a href="stok_barang.php" style="color:white; text-decoration:none;">Cek Stok Barang</a></li>
+            <li><a href="cek_stok.php" style="color:white; text-decoration:none;">Cek Stok Barang</a></li>
         </ul>
         <div class="logout"><a href="logout.php" style="color:white; text-decoration:none;">Logout</a></div>
     </div>
@@ -57,7 +57,7 @@ $transaksi_terakhir = mysqli_query($conn, $query_transaksi);
         <h1>Dashboard Kasir</h1>
         <div class="welcome-card">
             <h2>Selamat Datang, <?= htmlspecialchars($_SESSION['nama']) ?>!</h2>
-            <p>Hari ini: <?= date('l, d F Y') ?></p>
+            <p><?= date('l, d F Y') ?></p>
         </div>
         <div class="stats">
             <div class="stat-card">

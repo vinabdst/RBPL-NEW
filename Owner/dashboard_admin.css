@@ -1,137 +1,154 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.dashboard {
+body {
+    font-family: Arial, sans-serif;
+    background: #e5e5e5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Dukung class .dashboard (dari file asli) maupun .container */
+.dashboard, .container {
     display: flex;
-    height: 100vh;           /* tinggi penuh viewport */
-    overflow: hidden;        /* mencegah scroll di container utama */
+    height: 100vh;
+    width: 100%;
 }
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
+    width: 260px;
     background: #312051;
     color: white;
-    padding: 20px;
-    height: 100vh;           /* setinggi viewport */
-    position: sticky;
-    top: 0;
-    overflow-y: auto;        /* jika sidebar terlalu panjang, scroll sendiri (opsional) */
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+    height: 100vh;
+    overflow-y: auto;
 }
+
 .sidebar h2 {
-    margin-bottom: 30px;
+    font-size: 22px;
+    margin-bottom: 5px;
 }
+
+.sidebar .role {
+    color: #F0C38E;
+    font-size: 14px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #48426D;
+}
+
 .sidebar ul {
     list-style: none;
+    flex: 1;
     padding: 0;
 }
+
 .sidebar li {
-    margin-bottom: 5px;
-    padding: 0;
+    margin-bottom: 8px;
+    position: relative;
 }
+
+/* Perbaikan link sidebar - pastikan dapat diklik */
 .sidebar li a {
     display: block;
-    padding: 12px;
+    padding: 12px 15px;
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    transition: background 0.3s;
+    border-radius: 10px;
+    background: transparent;
+    pointer-events: auto !important;   /* Pastikan bisa diklik */
+    position: relative;
+    z-index: 10;
 }
-.sidebar li a:hover {
-    background: #48426D;
-}
+
+.sidebar li a:hover,
 .sidebar li.active a {
     background: #48426D;
 }
 
-/* MAIN */
+/* Hapus kemungkinan pseudo-element mengganggu */
+.sidebar li a::before,
+.sidebar li a::after {
+    pointer-events: none !important;
+}
+
+.logout {
+    margin-top: auto;
+    border-top: 1px solid #48426D;
+    padding-top: 15px;
+}
+
+.logout a {
+    display: block;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    pointer-events: auto !important;
+}
+
+/* MAIN CONTENT */
 .main {
     flex: 1;
-    padding: 30px;
-    overflow-y: auto;        /* hanya main yang discroll */
-    height: 100vh;
+    padding: 30px 40px;
+    overflow-y: auto;
+    background: #f4f6f9;
 }
 
-/* TOPBAR */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+.main h1 {
+    font-size: 28px;
+    color: #312051;
+    margin-bottom: 20px;
 }
 
-.user {
-  background: #48426D;        /* medium purple */
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
+.welcome-card {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
 
-.welcome-message {
-  font-size: 18px;
-  color: #312051;             /* dark purple */
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-/* CARDS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.card h3 {
-  margin: 0;
-  font-size: 16px;
-  color: #555;
-}
-
-.card p {
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #F0C38E;             /* peach */
-}
-
-/* Notifikasi di atas tengah */
-.notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #312051;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s;
+.welcome-card p {
+    color: #555;
+    margin: 5px 0;
     font-size: 14px;
-    white-space: nowrap;
+    font-weight: normal;
 }
 
-.notification.show {
-    opacity: 1;
-    visibility: visible;
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
 }
 
-.notification.success {
-    background: #28a745;
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.notification.error {
-    background: #dc3545;
+.stat-card h3 {
+    font-size: 16px;
+    color: #312051;
+    margin-bottom: 12px;
+}
+
+.stat-card .big {
+    font-size: 32px;
+    font-weight: bold;
+    color: #F0C38E;
+    margin: 0;
+}
+
+/* Tambahan untuk memastikan tidak ada overlay */
+.sidebar ul, .sidebar .logout {
+    position: relative;
+    z-index: 5;
 }
