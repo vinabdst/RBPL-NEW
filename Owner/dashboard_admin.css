@@ -1,3 +1,6 @@
+/* ========== FONT UNIK ========== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +8,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background: #e5e5e5;
     height: 100vh;
     overflow: hidden;
@@ -31,16 +34,21 @@ body {
 }
 
 .sidebar h2 {
-    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .sidebar .role {
+    font-family: 'Quicksand', sans-serif;
     color: #F0C38E;
     font-size: 14px;
     margin-bottom: 30px;
     padding-bottom: 10px;
     border-bottom: 1px solid #48426D;
+    font-weight: 500;
 }
 
 .sidebar ul {
@@ -54,7 +62,6 @@ body {
     position: relative;
 }
 
-/* Perbaikan link sidebar - pastikan dapat diklik */
 .sidebar li a {
     display: block;
     padding: 12px 15px;
@@ -62,20 +69,19 @@ body {
     text-decoration: none;
     border-radius: 10px;
     background: transparent;
-    pointer-events: auto !important;   /* Pastikan bisa diklik */
+    pointer-events: auto !important;
     position: relative;
     z-index: 10;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
 }
 
 .sidebar li a:hover,
 .sidebar li.active a {
     background: #48426D;
-}
-
-/* Hapus kemungkinan pseudo-element mengganggu */
-.sidebar li a::before,
-.sidebar li a::after {
-    pointer-events: none !important;
+    color: #F0C38E;
 }
 
 .logout {
@@ -89,7 +95,8 @@ body {
     padding: 12px 15px;
     color: white;
     text-decoration: none;
-    pointer-events: auto !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
 }
 
 /* MAIN CONTENT */
@@ -101,9 +108,11 @@ body {
 }
 
 .main h1 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 28px;
     color: #312051;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .welcome-card {
@@ -115,10 +124,11 @@ body {
 }
 
 .welcome-card p {
+    font-family: 'Quicksand', sans-serif;
     color: #555;
     margin: 5px 0;
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 500;
 }
 
 .stats {
@@ -135,20 +145,17 @@ body {
 }
 
 .stat-card h3 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #312051;
     margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .stat-card .big {
+    font-family: 'Montserrat', sans-serif;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 800;
     color: #F0C38E;
     margin: 0;
-}
-
-/* Tambahan untuk memastikan tidak ada overlay */
-.sidebar ul, .sidebar .logout {
-    position: relative;
-    z-index: 5;
 }

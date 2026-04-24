@@ -67,15 +67,14 @@
 
     <!-- LEFT SIDE -->
     <div class="left">
-      <h2>Toko Logam</h2>
-    </div>
+    <h2>SISTEM INFORMASI<br>TOKO BAHAN LOGAM</h2>    </div>
 
     <!-- RIGHT SIDE -->
     <div class="right">
       <form action="" method="POST">
         <div class="icon">⚙️</div>
 
-        <h2>Masuk ke Toko Logam</h2>
+        <h2>Masuk ke SIMTBL</h2>
         <p class="subtitle">Masuk ke akun Anda untuk melanjutkan</p>
 
         <?php if(isset($error)): ?>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 body {
   margin: 0;
   height: 100vh;
@@ -5,10 +7,9 @@ body {
   justify-content: center;
   align-items: center;
   background: #e5e5e5;
-  font-family: Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
-/* Card utama */
 .card {
   width: 900px;
   height: 520px;
@@ -18,30 +19,38 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* LEFT */
 .left {
   width: 45%;
-  background: #ffffff;
-  color: rgb(0, 0, 0);
+  background: linear-gradient(rgba(49, 32, 81, 0.7), rgba(49, 32, 81, 0.8)), url('bg-logam.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px;
+  text-align: center;
 }
 
 .left h2 {
+  font-family: 'Montserrat', sans-serif;
   font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .left p {
-  opacity: 0.8;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
-/* RIGHT */
 .right {
   width: 55%;
-  background: #312051;        /* dark purple */
+  background: #312051;
   color: white;
   display: flex;
   justify-content: center;
@@ -53,22 +62,30 @@ form {
   text-align: center;
 }
 
-.icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-  color: #F0C38E;             /* peach */
+.right h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
+  font-family: 'Quicksand', sans-serif;
   font-size: 13px;
+  font-weight: 500;
   margin-bottom: 20px;
+  opacity: 0.8;
 }
 
 label {
   display: block;
   text-align: left;
   margin-top: 10px;
-  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 input, select {
@@ -77,6 +94,10 @@ input, select {
   margin-top: 5px;
   border-radius: 8px;
   border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  background: #fff;
 }
 
 button {
@@ -85,18 +106,25 @@ button {
   margin-top: 20px;
   border-radius: 8px;
   border: none;
-  background: #48426D;        /* medium purple */
+  background: #48426D;
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 button:hover {
-  background: #F0C38E;        /* peach */
-  color: #312051;             /* dark purple text */
+  background: #F0C38E;
+  color: #312051;
 }
 
 .footer {
+  font-family: 'Quicksand', sans-serif;
   font-size: 11px;
+  font-weight: 500;
   margin-top: 20px;
+  opacity: 0.7;
 }

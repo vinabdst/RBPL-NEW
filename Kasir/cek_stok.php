@@ -119,7 +119,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <li><a href="penjualan.php">Transaksi Penjualan</a></li>
             <li class="active"><a href="stok_barang.php">Cek Stok Barang</a></li>
         </ul>
-        <div class="logout"><a href="logout.php">Logout</a></div>
+        <div class="logout"><a href="../logout.php">Logout</a></div>
     </div>
 
     <div class="main">

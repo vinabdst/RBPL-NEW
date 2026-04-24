@@ -1,4 +1,6 @@
-/* ========== RESET & BASE ========== */
+/* ========== FONT UNIK ========== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,45 +8,46 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background: #e5e5e5;
     height: 100vh;
     overflow: hidden;
 }
 
-/* ========== LAYOUT UTAMA ========== */
 .container {
     display: flex;
     height: 100vh;
     width: 100%;
 }
 
-/* ========== SIDEBAR (sama persis dengan Owner) ========== */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
-    background: #312051;      /* dark purple */
+    background: #312051;
     color: white;
     display: flex;
     flex-direction: column;
     padding: 25px 20px;
-    position: sticky;
-    top: 0;
     height: 100vh;
     overflow-y: auto;
 }
 
 .sidebar h2 {
-    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
     margin-bottom: 5px;
-    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .sidebar .role {
-    color: #F0C38E;           /* peach */
+    font-family: 'Quicksand', sans-serif;
+    color: #F0C38E;
     font-size: 14px;
     margin-bottom: 30px;
     padding-bottom: 10px;
     border-bottom: 1px solid #48426D;
+    font-weight: 500;
 }
 
 .sidebar ul {
@@ -64,12 +67,14 @@ body {
     text-decoration: none;
     border-radius: 10px;
     transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
     font-size: 14px;
 }
 
 .sidebar li a:hover,
 .sidebar li.active a {
-    background: #48426D;      /* medium purple */
+    background: #48426D;
     color: #F0C38E;
 }
 
@@ -84,16 +89,11 @@ body {
     padding: 12px 15px;
     color: white;
     text-decoration: none;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
 }
 
-.logout a:hover {
-    background: #48426D;
-    color: #F0C38E;
-}
-
-/* ========== MAIN CONTENT (gaya seperti Owner) ========== */
+/* MAIN CONTENT */
 .main {
     flex: 1;
     padding: 30px 40px;
@@ -101,7 +101,6 @@ body {
     background: #f4f6f9;
 }
 
-/* Topbar (seperti di dashboard_admin) */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -110,42 +109,47 @@ body {
 }
 
 .topbar h1 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 28px;
     color: #312051;
     margin: 0;
+    font-weight: 700;
 }
 
 .user {
+    font-family: 'Quicksand', sans-serif;
     background: #48426D;
     color: white;
     padding: 8px 18px;
     border-radius: 30px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-/* Welcome card = form-card (gaya Owner) */
 .welcome-card {
     background: white;
     padding: 25px 30px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     margin-bottom: 30px;
 }
 
 .welcome-card h2 {
+    font-family: 'Montserrat', sans-serif;
     color: #312051;
-    margin: 0 0 8px 0;
+    margin: 0 0 8px;
     font-size: 22px;
+    font-weight: 700;
 }
 
 .welcome-card p {
+    font-family: 'Quicksand', sans-serif;
     color: #555;
     margin: 0;
     font-size: 14px;
+    font-weight: 500;
 }
 
-/* Grid statistik -> mirip dengan .cards di Owner */
 .stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -157,43 +161,42 @@ body {
     background: white;
     padding: 20px 25px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.2s;
 }
 
 .stat-card h3 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: #312051;
-    margin: 0 0 12px 0;
+    margin: 0 0 12px;
 }
 
 .stat-card .big {
+    font-family: 'Montserrat', sans-serif;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 800;
     color: #F0C38E;
     margin: 10px 0 8px;
 }
 
 .stat-card span {
+    font-family: 'Quicksand', sans-serif;
     font-size: 13px;
     color: #777;
+    font-weight: 500;
 }
 
-/* Tabel transaksi (gaya card seperti Owner) */
 .table-card {
     background: white;
     padding: 20px 25px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 .table-card h2 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     color: #312051;
     margin-top: 0;
@@ -201,6 +204,7 @@ body {
     padding-bottom: 10px;
     border-bottom: 2px solid #F0C38E;
     display: inline-block;
+    font-weight: 700;
 }
 
 table {
@@ -209,6 +213,7 @@ table {
 }
 
 thead th {
+    font-family: 'Montserrat', sans-serif;
     text-align: left;
     padding: 14px 8px;
     background: #f9f9f9;
@@ -218,29 +223,30 @@ thead th {
 }
 
 tbody td {
+    font-family: 'Quicksand', sans-serif;
     padding: 12px 8px;
     color: #444;
     border-bottom: 1px solid #eee;
+    font-weight: 500;
 }
 
 tbody tr:hover {
     background: #faf7f0;
 }
 
-/* ========== RESPONSIVE ========== */
+/* Responsive (tetap dipertahankan) */
 @media (max-width: 768px) {
     .sidebar {
         width: 80px;
         padding: 20px 10px;
     }
     .sidebar h2, .sidebar .role, .sidebar li a {
-        font-size: 0;
         display: none;
     }
     .sidebar li a::before {
-        font-size: 20px;
         content: "⚙️";
         display: block;
+        font-size: 20px;
         text-align: center;
     }
     .stats {
