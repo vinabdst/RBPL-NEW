@@ -7,39 +7,49 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Owner') {
     exit;
 }
 
+$id = (int)$_GET['id'];
+$query = "SELECT * FROM users WHERE idUser = $id";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+if (!$user) {
+    header("Location: user.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $nama = mysqli_real_escape_string($conn, $_POST['nama']);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
+    $new_password = $_POST['password'];
 
-    $check = mysqli_query($conn, "SELECT idUser FROM users WHERE username='$username'");
-    if (mysqli_num_rows($check) > 0) {
-        $error = "Username sudah terdaftar!";
+    $update = "UPDATE users SET username='$username', nama='$nama', role='$role'";
+    if (!empty($new_password)) {
+        $hashed = password_hash($new_password, PASSWORD_DEFAULT);
+        $update .= ", password='$hashed'";
+    }
+    $update .= " WHERE idUser=$id";
+
+    if (mysqli_query($conn, $update)) {
+        header("Location: user.php?status=updated");
+        exit;
     } else {
-        $insert = "INSERT INTO users (username, password, nama, role) 
-                   VALUES ('$username', '$password', '$nama', '$role')";
-        if (mysqli_query($conn, $insert)) {
-            header("Location: user.php?status=added");
-            exit;
-        } else {
-            $error = "Gagal menambah user: " . mysqli_error($conn);
-        }
+        $error = "Gagal update: " . mysqli_error($conn);
     }
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tambah User</title>
+    <title>Edit User - Toko Bahan Logam</title>
     <link rel="stylesheet" href="dashboard_admin.css">
     <style>
-        .form-card { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; }
+        .form-card { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
-        .btn-submit { background: #48426D; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
-        .btn-cancel { background: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 6px; margin-left: 10px; text-decoration: none; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Quicksand', sans-serif; }
+        .btn-submit { background: #48426D; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-family: 'Quicksand', sans-serif; }
+        .btn-cancel { background: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 6px; margin-left: 10px; text-decoration: none; font-family: 'Quicksand', sans-serif; }
+        .btn-cancel:hover { background: #5a6268; }
     </style>
 </head>
 <body>
@@ -61,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="main">
         <div class="topbar">
-            <h1>Tambah User</h1>
+            <h1>Edit User</h1>
         </div>
 
         <div class="form-card">
@@ -71,25 +81,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="POST">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" required>
+                    <label>Password Baru (kosongkan jika tidak diubah)</label>
+                    <input type="password" name="password">
                 </div>
                 <div class="form-group">
                     <label>Nama Lengkap</label>
-                    <input type="text" name="nama" required>
+                    <input type="text" name="nama" value="<?= htmlspecialchars($user['nama']) ?>" required>
                 </div>
                 <div class="form-group">
                     <label>Role</label>
                     <select name="role" required>
-                        <option value="Kasir">Kasir</option>
-                        <option value="Owner">Owner</option>
+                        <option value="Kasir" <?= $user['role'] == 'Kasir' ? 'selected' : '' ?>>Kasir</option>
+                        <option value="Owner" <?= $user['role'] == 'Owner' ? 'selected' : '' ?>>Owner</option>
                     </select>
                 </div>
                 <div>
-                    <button type="submit" class="btn-submit">Simpan</button>
+                    <button type="submit" class="btn-submit">Update</button>
                     <a href="user.php" class="btn-cancel">Batal</a>
                 </div>
             </form>

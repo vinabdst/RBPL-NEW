@@ -2,7 +2,8 @@
 session_start();
 include '../koneksi.php';
 
-if (!isset($_SESSION['login'])) {
+// Hanya Kasir yang boleh akses
+if (!isset($_SESSION['login']) || $_SESSION['role'] != 'Kasir') {
     header("Location: ../index.php");
     exit;
 }
@@ -14,35 +15,21 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_jual FR
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Transaksi Penjualan</title>
-    <link rel="stylesheet" href="<?= ($_SESSION['role'] == 'Owner') ? 'dashboard_admin.css' : 'dashboard_kasir.css' ?>">
+    <title>Transaksi Penjualan - Kasir</title>
+    <link rel="stylesheet" href="dashboard_kasir.css">
     <style>
-        .form-card { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 15px; }
+        .form-card { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         .item-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
         .item-row select, .item-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
         .btn-add-item { background: #48426D; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }
         .btn-submit { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
-        .remove-item { color: red; cursor: pointer; font-weight: bold; }
+        .remove-item { color: red; cursor: pointer; font-weight: bold; margin-left: 5px; }
         .total-box { margin-top: 20px; font-size: 18px; font-weight: bold; text-align: right; }
+        .alert-error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-<div class="<?= ($_SESSION['role'] == 'Owner') ? 'dashboard' : 'container' ?>">
-    <!-- Sidebar dinamis -->
-    <?php if ($_SESSION['role'] == 'Owner'): ?>
-    <div class="sidebar">
-        <h2>Toko Bahan Logam</h2>
-        <ul>
-            <li><a href="dashboard_admin.php">Dashboard</a></li>
-            <li><a href="barang.php">Data Barang</a></li>
-            <li><a href="pembelian.php">Transaksi Pembelian</a></li>
-            <li class="active"><a href="penjualan.php">Transaksi Penjualan</a></li>
-            <li><a href="laporan.php">Laporan</a></li>
-            <li><a href="user.php">Kelola User</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </div>
-    <?php else: ?>
+<div class="container">
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
         <p class="role">Kasir</p>
@@ -51,19 +38,17 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_jual FR
             <li class="active"><a href="penjualan.php">Transaksi Penjualan</a></li>
             <li><a href="cek_stok.php">Cek Stok Barang</a></li>
         </ul>
-        <div class="logout"><a href="logout.php" style="color:white; text-decoration:none;">Logout</a></div>
+        <div class="logout"><a href="../logout.php">Logout</a></div>
     </div>
-    <?php endif; ?>
 
     <div class="main">
         <div class="topbar">
             <h1>Transaksi Penjualan</h1>
-            <div class="user"><?= $_SESSION['username'] ?></div>
         </div>
 
         <div class="form-card">
             <?php if (isset($_GET['error'])): ?>
-                <div class="alert alert-error">Stok tidak mencukupi atau terjadi kesalahan.</div>
+                <div class="alert-error">❌ Stok tidak mencukupi atau terjadi kesalahan.</div>
             <?php endif; ?>
             <form method="POST" action="proses_penjualan.php" id="formPenjualan">
                 <div class="form-group">
@@ -94,7 +79,7 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_jual FR
                     <input type="hidden" name="total_harga" id="total_harga_input">
                 </div>
 
-                <button type="submit" class="btn-submit" style="margin-top: 20px;">Simpan & Cetak Nota</button>
+                <button type="submit" class="btn-submit" style="margin-top: 20px;">💾 Simpan & Cetak Nota</button>
             </form>
         </div>
     </div>
@@ -161,7 +146,6 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_jual FR
         document.getElementById('total_harga_input').value = total;
     }
 
-    // Attach event ke item yang sudah ada
     document.querySelectorAll('.item-row').forEach(row => attachHargaEvent(row));
 </script>
 </body>

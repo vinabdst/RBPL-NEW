@@ -103,7 +103,7 @@ $result = mysqli_query($conn, $query);
     </div>
 </div>
 
-<script src="notifikasi.js"></script>
+<script src="../notifikasi.js"></script>
 
 </body>
 </html>

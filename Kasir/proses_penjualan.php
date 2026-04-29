@@ -10,7 +10,7 @@ if (!isset($_SESSION['login'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tanggal = mysqli_real_escape_string($conn, $_POST['tanggal']);
     $total_harga = (float)$_POST['total_harga'];
-    $kasir = $_SESSION['username'];
+    $kasir = $_SESSION['nama'];
     $id_barang = $_POST['id_barang'];
     $jumlah = $_POST['jumlah'];
     $harga_satuan = $_POST['harga_satuan'];

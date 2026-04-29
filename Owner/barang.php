@@ -42,7 +42,6 @@ $result = mysqli_query($conn, $query);
 </head>
 <body>
 <div class="dashboard">
-    <!-- Sidebar -->
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
         <p class="role">Owner</p>
@@ -114,7 +113,7 @@ $result = mysqli_query($conn, $query);
     </div>
 </div>
 
-<script src="notifikasi.js"></script>
+<script src="../notifikasi.js"></script>
 
 </body>
 </html>

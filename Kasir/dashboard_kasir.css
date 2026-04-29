@@ -116,6 +116,15 @@ body {
     font-weight: 700;
 }
 
+.page-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #312051;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 .user {
     font-family: 'Quicksand', sans-serif;
     background: #48426D;
@@ -175,7 +184,7 @@ body {
 
 .stat-card .big {
     font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 800;
     color: #F0C38E;
     margin: 10px 0 8px;
@@ -258,4 +267,13 @@ tbody tr:hover {
     .topbar h1 {
         font-size: 22px;
     }
+}
+
+input, select, textarea, button, .btn, a, .btn-add, .btn-delete, .btn-edit, .btn-search, .btn-submit, .remove-item {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.number, .big, .value, .stat-card .big, .total-box, .total {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }

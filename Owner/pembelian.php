@@ -26,6 +26,15 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
         .btn-add-item { background: #48426D; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }
         .btn-submit { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
         .remove-item { color: red; cursor: pointer; }
+        .btn-add {
+            background: #48426D;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-add:hover { background: #312051; }
     </style>
 </head>
 <body>
@@ -49,6 +58,9 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
     <div class="main">
         <div class="topbar">
             <h1>Transaksi Pembelian dari Supplier</h1>
+            <div style="margin-bottom: 15px;">
+                <a href="riwayat_pembelian.php" class="btn-add" style="background: #48426D;">📋 Riwayat Pembelian</a>
+            </div>
         </div>
 
         <div class="form-card">
@@ -74,10 +86,10 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
                             <?php endwhile; ?>
                         </select>
                         <input type="number" name="jumlah[]" placeholder="Jumlah" required>
-                        <input type="text" name="harga_satuan[]" placeholder="Harga satuan" readonly>
+                        <input type="text" name="harga_satuan[]" placeholder="Harga satuan" required step="1000">
                         <span class="remove-item" onclick="this.parentElement.remove()">❌</span>
                     </div>
-                </div>
+                </div><br>
                 <button type="button" class="btn-add-item" onclick="tambahItem()">+ Tambah Barang</button>
 
                 <div class="form-group" style="margin-top: 20px;">
@@ -108,7 +120,7 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
                 ?>
             </select>
             <input type="number" name="jumlah[]" placeholder="Jumlah" required>
-            <input type="text" name="harga_satuan[]" placeholder="Harga satuan" readonly>
+            <input type="text" name="harga_satuan[]" placeholder="Harga satuan" required step="1000">
             <span class="remove-item" onclick="this.parentElement.remove(); hitungTotal()">❌</span>
         `;
         container.appendChild(newRow);
@@ -120,14 +132,19 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
         const jumlahInput = row.querySelector('input[name="jumlah[]"]');
         const hargaInput = row.querySelector('input[name="harga_satuan[]"]');
         
-        function updateHarga() {
+        function updateHargaFromSelected() {
             const selected = select.options[select.selectedIndex];
             const hargaBeli = selected.getAttribute('data-harga');
-            hargaInput.value = hargaBeli ? parseInt(hargaBeli) : '';
+            // Hanya isi otomatis jika hargaInput masih kosong (belum diisi user)
+            if (hargaBeli && hargaInput.value === '') {
+                hargaInput.value = parseInt(hargaBeli);
+            }
             hitungTotal();
         }
-        select.addEventListener('change', updateHarga);
+        
+        select.addEventListener('change', updateHargaFromSelected);
         jumlahInput.addEventListener('input', hitungTotal);
+        hargaInput.addEventListener('input', hitungTotal); // agar perubahan harga manual ikut hitung
     }
 
     function hitungTotal() {

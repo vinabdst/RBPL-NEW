@@ -115,6 +115,15 @@ body {
     font-weight: 700;
 }
 
+.page-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #312051;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 .welcome-card {
     background: white;
     padding: 25px 30px;
@@ -154,8 +163,62 @@ body {
 
 .stat-card .big {
     font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 800;
     color: #F0C38E;
     margin: 0;
+}
+
+/* ===== NOTIFICATION STYLE - TENGAH ATAS ===== */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+
+/* Untuk tampilan responsif jika teks panjang */
+@media (max-width: 600px) {
+    .notification {
+        white-space: normal;
+        text-align: center;
+        max-width: 90%;
+        font-size: 12px;
+        padding: 10px 16px;
+    }
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+input, select, textarea, button, .btn, a, .btn-add, .btn-delete, .btn-edit, .btn-search, .btn-submit, .btn-filter, .btn-export, .btn-print, .remove-item {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Untuk elemen yang butuh tampilan angka rapi */
+.number, .big, .value, .stat-card .big, .total-box, .total {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }

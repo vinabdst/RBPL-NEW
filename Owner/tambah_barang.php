@@ -41,18 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <div class="dashboard">
-    <!-- Sidebar (salin dari barang.php) -->
     <div class="sidebar">
         <h2>Toko Bahan Logam</h2>
+        <p class="role">Owner</p>
         <ul>
-            <li><a href="dashboard_admin.php" style="color: white; text-decoration: none;">Dashboard</a></li>
-            <li class="active"><a href="barang.php" style="color: white; text-decoration: none;">Data Barang</a></li>
-            <li>Transaksi Pembelian</li>
-            <li>Transaksi Penjualan</li>
-            <li>Laporan</li>
-            <li>Kelola User</li>
-            <li><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></li>
+            <li><a href="dashboard_admin.php">Dashboard</a></li>
+            <li class="active"><a href="barang.php">Data Barang</a></li>
+            <li><a href="pembelian.php">Transaksi Pembelian</a></li>
+            <li><a href="laporan.php">Laporan</a></li>
+            <li><a href="user.php">Kelola User</a></li>
         </ul>
+        <div class="logout">
+            <a href="../logout.php">Logout</a>
+        </div>
     </div>
 
     <div class="main">

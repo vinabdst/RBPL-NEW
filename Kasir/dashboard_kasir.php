@@ -51,10 +51,13 @@ $transaksi_terakhir = mysqli_query($conn, $query_transaksi);
             <li><a href="penjualan.php" style="color:white; text-decoration:none;">Transaksi Penjualan</a></li>
             <li><a href="cek_stok.php" style="color:white; text-decoration:none;">Cek Stok Barang</a></li>
         </ul>
-        <div class="logout"><a href="logout.php" style="color:white; text-decoration:none;">Logout</a></div>
+        <div class="logout"><a href="../logout.php" style="color:white; text-decoration:none;">Logout</a></div>
     </div>
     <div class="main">
-        <h1>Dashboard Kasir</h1>
+        <div class="page-header">
+            <h1>Dashboard Admin</h1>
+        </div>
+        
         <div class="welcome-card">
             <h2>Selamat Datang, <?= htmlspecialchars($_SESSION['nama']) ?>!</h2>
             <p><?= date('l, d F Y') ?></p>

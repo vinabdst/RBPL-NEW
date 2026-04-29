@@ -125,7 +125,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="main">
         <div class="topbar">
             <h1>Cek Stok Barang</h1>
-            <div class="user"><?= htmlspecialchars($_SESSION['username']) ?></div>
         </div>
 
         <div class="welcome-card">
@@ -141,7 +140,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <span>jenis produk</span>
             </div>
             <div class="stats-small">
-                <h4>Stok Menipis (≤5)</h4>
+                <h4>Stok Menipis (≤10)</h4>
                 <div class="number"><?= $stok_menipis ?></div>
                 <span>perlu segera diisi ulang</span>
             </div>
@@ -175,7 +174,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 $stok = $item['stok'];
                                 if ($stok <= 0) {
                                     $status = '<span class="badge badge-danger">Habis</span>';
-                                } elseif ($stok <= 5) {
+                                } elseif ($stok <= 10) {
                                     $status = '<span class="badge badge-warning">Menipis ('.$stok.')</span>';
                                 } else {
                                     $status = '<span class="badge badge-success">Tersedia</span>';
