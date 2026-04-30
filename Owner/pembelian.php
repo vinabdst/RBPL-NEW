@@ -74,7 +74,7 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
                     <input type="text" name="supplier" placeholder="Nama supplier" required>
                 </div>
 
-                <h3>Detail Barang</h3>
+                <h4>Detail Barang</h4>
                 <div id="item-list">
                     <div class="item-row">
                         <select name="id_barang[]" required>
@@ -89,7 +89,7 @@ $barang = mysqli_query($conn, "SELECT idBarang, nama_barang, stok, harga_beli FR
                         <input type="text" name="harga_satuan[]" placeholder="Harga satuan" required step="1000">
                         <span class="remove-item" onclick="this.parentElement.remove()">❌</span>
                     </div>
-                </div><br>
+                </div>
                 <button type="button" class="btn-add-item" onclick="tambahItem()">+ Tambah Barang</button>
 
                 <div class="form-group" style="margin-top: 20px;">

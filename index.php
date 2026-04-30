@@ -52,6 +52,10 @@
             $error = "Username tidak ditemukan!";
         }
     }
+
+    if (isset($_GET['status']) && $_GET['status'] == 'reset_success') {
+        echo "<div style='background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px;'>Password berhasil direset. Silakan login dengan password baru Anda.</div>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -96,9 +100,14 @@
             <option value="Kasir">Kasir</option>
         </select>
 
-        <div style="display: flex; align-items: center; margin-top: 10px;">
-            <input type="checkbox" name="remember" id="remember" style="width: auto; margin-right: 5px;">
-            <label for="remember" style="display: inline; margin: 0; color: white;">Remember Me</label>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+            <div style="display: flex; align-items: center;">
+                <input type="checkbox" name="remember" id="remember" style="width: auto; margin-right: 5px;">
+                <label for="remember" style="margin: 0; color: white;">Remember Me</label>
+            </div>
+            <div style="font-size: 12px;">
+                <a href="lupa_password.php" style="color: #F0C38E; text-decoration: none;">Lupa password?</a>
+            </div>
         </div>
 
         <button type="submit" name="login">Masuk</button>

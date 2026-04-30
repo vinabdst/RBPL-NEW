@@ -55,7 +55,7 @@ $transaksi_terakhir = mysqli_query($conn, $query_transaksi);
     </div>
     <div class="main">
         <div class="page-header">
-            <h1>Dashboard Admin</h1>
+            <h1>Dashboard Kasir</h1>
         </div>
         
         <div class="welcome-card">

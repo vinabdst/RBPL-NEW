@@ -67,8 +67,9 @@ $laba_kotor = $total_penjualan - $total_pembelian;
     <link rel="stylesheet" href="dashboard_admin.css">
     <style>
         .main {
-            padding-bottom: 60px; /* ruang ekstra di bawah */
+            padding-bottom: 60px;
         }
+        /* Perbaikan: Tombol Cetak & Export UKURAN SAMA */
         .action-buttons {
             text-align: right;
             margin-top: 30px;
@@ -77,8 +78,33 @@ $laba_kotor = $total_penjualan - $total_pembelian;
         }
         .btn-export, .btn-print {
             display: inline-block;
-            margin-left: 10px;
+            padding: 8px 18px;          /* padding sama */
+            font-size: 14px;             /* font sama */
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;          /* sudut sama */
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 12px;
+            transition: 0.2s;
+            text-align: center;
+            min-width: 130px;            /* lebar minimal sama (opsional) */
         }
+        .btn-export {
+            background: #28a745;
+            color: white;
+        }
+        .btn-print {
+            background: #17a2b8;
+            color: white;
+        }
+        .btn-export:hover, .btn-print:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* Sisanya tetap seperti semula */
         .filter-card, .stats-card, .table-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .filter-form { display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end; }
         .filter-form .form-group { margin-bottom: 0; }
@@ -92,8 +118,6 @@ $laba_kotor = $total_penjualan - $total_pembelian;
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
         th { background: #312051; color: white; }
-        .btn-export { background: #28a745; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; margin-right: 10px; }
-        .btn-print { background: #17a2b8; }
     </style>
 </head>
 <body>
@@ -245,10 +269,10 @@ $laba_kotor = $total_penjualan - $total_pembelian;
             </table>
         </div>
 
-        <!-- Tombol Ekspor -->
+        <!-- Tombol Ekspor & Cetak - UKURAN SUDAH SAMA -->
         <div class="action-buttons">
             <a href="export_laporan_excel.php?periode=<?= $periode ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>&tanggal_mulai=<?= $tanggal_mulai ?>&tanggal_selesai=<?= $tanggal_selesai ?>" class="btn-export">📊 Export Excel</a>
-            <button class="btn-export btn-print" onclick="window.print()">🖨️ Cetak Laporan</button>
+            <button class="btn-print" onclick="window.print()">🖨️ Cetak Laporan</button>
         </div>
     </div>
 </div>

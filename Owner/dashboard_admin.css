@@ -222,3 +222,44 @@ input, select, textarea, button, .btn, a, .btn-add, .btn-delete, .btn-edit, .btn
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
+
+/* ===== UKURAN SEDANG UNTUK ITEM BARANG ===== */
+.item-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 5px;
+}
+
+.item-row select,
+.item-row input[type="number"],
+.item-row input[type="text"] {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    min-width: 140px;
+    box-sizing: border-box;
+}
+
+.item-row select {
+    min-width: 170px;
+}
+
+.item-row input[type="number"] {
+    min-width: 100px;
+}
+
+.item-row input[type="text"] {
+    min-width: 120px;
+}
+
+.remove-item {
+    font-size: 16px;
+    cursor: pointer;
+}
