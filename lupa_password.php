@@ -19,7 +19,10 @@ if ($step == 'reset' && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashed = password_hash($password_baru, PASSWORD_DEFAULT);
             $update = "UPDATE users SET password='$hashed' WHERE idUser=" . $user['idUser'];
             mysqli_query($conn, $update);
-            header("Location: index.php?status=reset_success");
+            
+            // Set session flash notifikasi sukses
+            $_SESSION['flash'] = ['type' => 'success', 'message' => 'Password berhasil direset. Silakan login.'];
+            header("Location: index.php");
             exit;
         } else {
             $error = "Password baru dan konfirmasi tidak cocok.";
@@ -106,7 +109,7 @@ if ($step == 'reset' && $_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="reset-container">
     <h2>Reset Password</h2>
     <?php if (isset($error)): ?>
-        <div class="error"><?= $error ?></div>
+        <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
     <form method="POST" action="lupa_password.php?step=reset">
         <div class="form-group">
